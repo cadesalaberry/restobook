@@ -30,14 +30,20 @@
   <script>
     var map, restaurants;
 
-    function search_restaurants() {
+
+    function search_restaurants(e) {
+      e.preventDefault();
+      /* Endpoint not working (internal error) */
       /* To change to http://localhost:5000/search */
-      $.getJSON('http://localhost:5000/restaurants', function (data) {
+      $.getJSON('http://localhost:5000/search', function (data) {
         restaurants = data["_items"];
         plot_markers();
       });
+
+      return false;
     }
 
+    $('#request').submit(function (e) {search_restaurants(e)});
 
     function book_restaurant(id) {
       console.log('Booking ' + id + '...');
@@ -47,6 +53,8 @@
         id: 'foo',
         name: 'restaurant_id'
       }).appendTo('#request');
+
+      /* Should remap to another endpoint, not search */
       var string = $('#request').serialize();
 
       console.log(string);
@@ -82,6 +90,7 @@
     }
 
     function initialize() {
+
       var mapCanvas = document.getElementById('map');
       var mapOptions = {
         center: new google.maps.LatLng(48.8567, 2.3508),
@@ -114,7 +123,7 @@
     <main class="mdl-layout__content" style="width:100%">
       <div class="mdl-grid">
         
-        <form id="request" action="http://localhost:5000/api/search" class="mdl-grid">
+        <form id="request" action="http://localhost:5000/search" class="mdl-grid">
           I am looking for a restaurant on the <input name="date" type="date"> at <input name="time" type="time"> for <input name="headcount" type="number"> people. <input type="submit">
         </form>
 

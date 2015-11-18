@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Restobook</title>
+  <meta name="description" content="Book a restaurant.">
+  <meta name="author" content="cadesalaberry">
+
+  <style type="text/css">
+    #map {
+      width: 100%;
+      height: 320px;
+    }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css"> -->
+  <link rel="stylesheet" href="./assets/material.min.css">
+  <!-- <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script> -->
+  <script src="./assets/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script>
+    var map;
+
+    restaurant = {
+      lat: 48.863930,
+      lng: 2.293355
+    }
+    restaurants = [restaurant]
+
+    function plot_markers() {
+      restaurants.map(function (item) {
+        console.log("Plotting" + item);
+        var latLng = new google.maps.LatLng(item['lat'], item['lng']);
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+      });
+    }
+
+    function initialize() {
+      var mapCanvas = document.getElementById('map');
+      var mapOptions = {
+        center: new google.maps.LatLng(48.8567, 2.3508),
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      map = new google.maps.Map(mapCanvas, mapOptions)
+
+      plot_markers()
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+</head>
+
+<body>
+  <!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Restobook</span>
+      </div>
+    </header>
+    
+    <main class="mdl-layout__content" style="width:100%">
+      <div class="mdl-grid">
+        <div class="mdl-cell">
+          <form>  
+            I am looking for a restaurant on the <input type="date"> at <input type="time"> for <input type="number"> people.
+          </form>
+        </div>
+
+        <div class="mdl-cell">
+          <div id="map"></div>
+        </div>
+      </div>
+    </main>
+    
+  </div>
+
+
+
+
+
+</body>
+</html>

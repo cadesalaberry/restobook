@@ -30,11 +30,27 @@
   <script>
     var map, restaurants;
 
-    function book_restaurant(id) {
+    function search_restaurants() {
+      /* To change to http://localhost:5000/search */
+      $.getJSON('http://localhost:5000/restaurants', function (data) {
+        restaurants = data["_items"];
+        plot_markers();
+      });
+    }
 
+
+    function book_restaurant(id) {
       console.log('Booking ' + id + '...');
 
-      alert('Restaurant ' + id + ' is booked !');
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'foo',
+        name: 'restaurant_id'
+      }).appendTo('#request');
+      var string = $('#request').serialize();
+
+      console.log(string);
+      // alert('Restaurant ' + id + ' is booked !');
       return;
     }
 
@@ -98,8 +114,8 @@
     <main class="mdl-layout__content" style="width:100%">
       <div class="mdl-grid">
         
-        <form action="http://localhost:5000/api/search" class="mdl-grid">
-          I am looking for a restaurant on the <input type="date"> at <input type="time"> for <input type="number"> people. <input type="submit">
+        <form id="request" action="http://localhost:5000/api/search" class="mdl-grid">
+          I am looking for a restaurant on the <input name="date" type="date"> at <input name="time" type="time"> for <input name="headcount" type="number"> people. <input type="submit">
         </form>
 
         <div id="map"></div>

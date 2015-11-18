@@ -76,15 +76,13 @@
     
     <main class="mdl-layout__content" style="width:100%">
       <div class="mdl-grid">
-        <div class="mdl-cell">
-          <form>  
-            I am looking for a restaurant on the <input type="date"> at <input type="time"> for <input type="number"> people.
-          </form>
-        </div>
+        
+        <form action="http://localhost:5000/api/search" class="mdl-grid">
+          I am looking for a restaurant on the <input type="date"> at <input type="time"> for <input type="number"> people. <input type="submit">
+        </form>
 
-        <div class="mdl-cell">
-          <div id="map"></div>
-        </div>
+        <div id="map"></div>
+
       </div>
     </main>
     

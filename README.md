@@ -6,13 +6,14 @@ A simple project to manage reservations from restaurants.
 ## Routes
 
 ```
-GET   /api/restaurants/
-POST  /api/restaurants/
-GET   /api/restaurants/23
-PUT   /api/restaurants/23
-POST  /api/restaurants/23/reservations
-GET   /api/restaurants/23/reservations
+GET   /restaurants/
+POST  /restaurants/
+GET   /restaurants/23
+PUT   /restaurants/23
+POST  /reservations
+GET   /reservations/2
 
+/search ==> JSON of restaurants to map
 /       ==> book restaurant
 /admin  ==> Admin page + login
 /calendar ==> Calendar + login

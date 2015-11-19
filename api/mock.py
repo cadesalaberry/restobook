@@ -1,4 +1,3 @@
-
 restaurants = [
   {
     "id": '23',
@@ -14,7 +13,7 @@ reservations = [
     "name": 'L Abeille',
     "restaurant_id": '23',
     "headcount": '3',
-    "from": '2005-06-01 13:30:00',
-    "to": '2005-06-01 15:00:00',
+    "from": '2005-06-01 13:30',
+    "to": '2005-06-01 15:00',
   }
 ]
